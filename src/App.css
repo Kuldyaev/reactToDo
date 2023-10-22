@@ -1,7 +1,7 @@
 .App {
   margin: 0;
   padding: 0;
-  max-width: 1140px;
+  max-width: 1440px;
   display: flex;
   flex-direction: column;
 }
@@ -14,7 +14,7 @@
 
 header {
   background-color: silver;
-  width: 100%;
+  width: 86%;
   height: 5vh;
   display: flex;
   flex-direction: row;
@@ -23,24 +23,23 @@ header {
   padding: 1vh 7%;
 }
 
-header>h2 {
+header > h2 {
   font-size: 3vh;
 }
 
-header>p {
+header > p {
   font-size: 1.5vh;
   cursor: pointer;
 }
 
-.logout:hover{
+.logout:hover {
   color: darkblue;
 }
-
 
 footer {
   background-color: black;
   color: white;
-  width: 100%;
+  width: 86%;
   height: 3vh;
   display: flex;
   flex-direction: row;
@@ -49,7 +48,7 @@ footer {
   padding: 1vh 7%;
 }
 
-footer>p {
+footer > p {
   color: silver;
   font-size: 1vh;
 }
@@ -69,15 +68,15 @@ main {
   justify-content: center;
 }
 
-.notfound>h1 {
+.notfound > h1 {
   font-size: 4vh;
 }
 
-.notfound>h3 {
+.notfound > h3 {
   font-size: 3vh;
 }
 
-.notfound>.link {
+.notfound > .link {
   font-size: 2vh;
 }
 
@@ -97,23 +96,111 @@ main {
   justify-content: center;
 }
 
-.loginFormItem{
+.loginFormItem {
   margin-bottom: 1vh;
   height: 2vh;
   width: 20vw;
   font-size: 2vh;
 }
 
-#formtitle{
+#formtitle {
   font-size: 3vh;
 }
 
-.loginFormItem{
+.loginFormItem {
   height: 3vh;
   font-size: 2vh;
 }
 
-.warning{
+.warning {
   color: red;
   font-size: 2vh;
+}
+
+.taskDesk {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.task {
+  width: 100vw;
+  display: flex;
+  flex-direction: row;
+  border: 1px solid grey;
+}
+
+.taskDetail {
+  border-right: 1px solid grey;
+  font-size: 1.7vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+@media screen and (max-width: 1440px) {
+  main {
+    min-height: 86vh;
+    width: 98vw;
+    padding: 1vh 0;
+  }
+
+  .task {
+    width: 96vw;
+  }
+
+ .ttitle {
+   width: 46vw;
+   flex-shrink: 0;
+ }
+
+ .prioritet {
+   width: 14vw;
+ }
+
+ .actor {
+   width: 16vw;
+ }
+
+ .status {
+   width: 12vw;
+ }
+
+ .finish {
+   width: 16vw;
+ }
+}
+
+
+
+@media screen and (min-width: 1441px) {
+  main {
+      min-height: 86vh;
+      width: 100%;
+      padding: 1vh 0;
+    }
+
+  .task {
+      width: 1440px;
+    }
+  .ttitle {
+      width: 692px;
+    }
+  
+    .prioritet {
+      width: 201px;
+    }
+  
+    .actor {
+      width: 230px;
+    }
+  
+    .status {
+      width: 173px;
+    }
+  
+    .finish {
+      width: 230px;
+    }
 }

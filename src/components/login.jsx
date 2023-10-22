@@ -75,7 +75,7 @@ const Login = function Login() {
           <input type="submit" className="loginFormItem" value="Войти" />
         </form>
         {wrongPassword && <p className="warning">неверный пароль</p>}
-        {wrongUsername && <p className="warning">неверный логин</p>}
+        {wrongUsername && <p className="warning">пользователя с таким логином не существует</p>}
       </div>
     </main>
   );

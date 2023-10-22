@@ -5,8 +5,9 @@ export const usersReducer = createSlice({
   initialState: {
       isAuthorized: false,
       users: [
-          { login: 'admin', pass: 'admin' },
-          { login: 'user', pass: '123456' }
+          { id: 1, login: 'admin', pass: 'admin', firstname: 'Семен', middlename: 'Семенович', familyname: 'Горбунков', managerId: null },
+          { id: 2, login: 'user', pass: '123456', firstname: 'Антон', middlename: 'Семенович', familyname: 'Шпак', managerId: 1 },
+          { id: 3, login: 'customer', pass: '123456', firstname: 'Карп', middlename: 'Савельевич', familyname: 'Якин', managerId: 1  },
       ]
   },
   reducers: {
