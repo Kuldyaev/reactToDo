@@ -5,11 +5,13 @@ import Main from "./components/main";
 import Login from "./components/login";
 import NotFound from "./components/notfound";
 import Footer from "./components/footer";
+import LoaderCircle from "./components/loaderCircle";
 
 function App() {
   return (
     <div className="App">
       <Header />
+      <LoaderCircle />
       <BrowserRouter>
         <Routes>
           <Route exact path="/" Component={Main} />
