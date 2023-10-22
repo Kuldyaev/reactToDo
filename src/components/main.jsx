@@ -1,15 +1,19 @@
-import { Component } from 'react'
+import { useEffect } from "react";
+import { useSelector } from "react-redux";
+import { useNavigate } from 'react-router-dom';
 
-class Main extends Component{
-    render(){
-        
-        return(
-        <main>
-            <p>Main</p>
-        </main>
-        )
-}}
+const Main = function DoctorInfoCard() {
+    const isAuthorized = useSelector((state) => state.users.isAuthorized);
+    const navigate = useNavigate();
 
+    useEffect(() => {
+        !isAuthorized &&  navigate("/login")
+    },[]);
 
-
-export default (Main)
+  return (
+    <main>
+      <p>Main</p>
+    </main>
+  );
+};
+export default Main;

@@ -1,16 +1,27 @@
-import { Component } from "react";
+import { unauthorize } from "./../reducers/users";
+import { useSelector, useDispatch } from "react-redux";
 
-class Header extends Component {
-  render() {
-    return (
-      <header>
-        <h2 className="headerBox1">
-          <p className="letters">ToDo App</p>
-        </h2>
-        <p>logout</p>
-      </header>
-    );
+const Header = function Header() {
+  const isAuthorized = useSelector((state) => state.users.isAuthorized);
+  const dispatch = useDispatch();
+
+  function logout()  {
+    dispatch(unauthorize());
+    window.location.reload();
   }
-}
+
+  return (
+    <header>
+      <h2 className="headerBox1">
+        <p className="letters">ToDo App</p>
+      </h2>
+      {isAuthorized && (
+        <p className="logout" onClick={logout}>
+          logout
+        </p>
+      )}
+    </header>
+  );
+};
 
 export default Header;
