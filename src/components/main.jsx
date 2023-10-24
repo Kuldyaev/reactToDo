@@ -1,14 +1,22 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import moment from "moment/moment";
 import Task from "./task";
 import TaskTableHeader from "./taskTableHeader";
-import Form from 'react-bootstrap/Form';
-import Modal from 'react-bootstrap/Modal';
-import Button from 'react-bootstrap/Button';
-import {  FormGroup, ModalBody, ModalHeader, ModalTitle} from "react-bootstrap";
+import {
+  Form,
+  Modal,
+  Button,
+  Badge,
+  FormGroup,
+  ModalBody,
+  ModalHeader,
+  ModalTitle,
+} from "react-bootstrap";
 
 const Main = function Main() {
+  const [newTaskModalShowed, setNewTaskModalShowed] = useState(false);
   const isAuthorized = useSelector((state) => state.users.isAuthorized);
   const navigate = useNavigate();
   const tasks = useSelector((state) => state.tasks.tasks);
@@ -19,35 +27,64 @@ const Main = function Main() {
 
   return (
     <main>
+      <div className="tasksDeskHeader">
+        <h2 id="formtitle">
+          <Badge text="dark">{'сегодня ' + moment().format("DD-MM-YYYY")}</Badge>
+        </h2>  
+        <h2 id="formtitle">
+          <Badge bg="secondary">Список задач:</Badge>
+        </h2>
+        <Button onClick={() => setNewTaskModalShowed(true)} variant="dark">
+          + cоздать новую задачу
+        </Button>
+      </div>
       <div className="taskDesk">
-        <h3>Список задач:</h3>
         {!Boolean(tasks.length) && <p>В настоящее время у вас нет задач</p>}
         {Boolean(tasks.length) && <TaskTableHeader />}
-        {Boolean(tasks.length) && tasks.map((task) => <Task task={task} />)}
+        {Boolean(tasks.length) &&
+          tasks.map((task) => <Task task={task} key={task.id} />)}
       </div>
-      <Modal show={false} centered>
+      <Modal
+        show={newTaskModalShowed}
+        onHide={() => setNewTaskModalShowed(false)}
+        centered
+      >
         <ModalHeader closeButton>
           <ModalTitle>Новая задача</ModalTitle>
         </ModalHeader>
         <ModalBody>
           <Form>
-            <FormGroup controlId="formBasicEmail">
-              <Form.Label>Email Adress </Form.Label>
-              <Form.Control type='email' placeholder='Enter email' />
-              <Form.Text className='text-muted'>We'll never share your email with anyone else</Form.Text>
+            <FormGroup controlId="title">
+              <Form.Label>Заголовок</Form.Label>
+              <Form.Control type="text" placeholder="Заголовок для задачи" />
             </FormGroup>
-            <FormGroup controlId="formBasicPassword">
-              <Form.Label>Password </Form.Label>
-              <Form.Control type='Password' placeholder='Password' />
-              <Form.Text className='text-muted'>We'll never share your email with anyone else</Form.Text>
+            <FormGroup controlId="description">
+              <Form.Label>Описание</Form.Label>
+              <Form.Control
+                type="text"
+                placeholder="Краткое описание для задачи"
+              />
+            </FormGroup>
+            <FormGroup className="horizontalBlock">
+              <FormGroup controlId="priority">
+                <Form.Label>Приоритет</Form.Label>
+                <Form.Control type="text" placeholder="приоритет задачи" />
+              </FormGroup>
+              <FormGroup controlId="status">
+                <Form.Label>Статус</Form.Label>
+                <Form.Control type="text" placeholder="статус задачи" />
+              </FormGroup>
             </FormGroup>
           </Form>
         </ModalBody>
         <Modal.Footer>
-          <Button variant="secondary" onClick={()=>console.log('closeBtn')}>
-            Close
+          <Button
+            variant="secondary"
+            onClick={() => setNewTaskModalShowed(false)}
+          >
+            Отмена
           </Button>
-          <Button variant="primary">Understood</Button>
+          <Button variant="primary">Создать задачу</Button>
         </Modal.Footer>
       </Modal>
     </main>
