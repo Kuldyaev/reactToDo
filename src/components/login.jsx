@@ -53,7 +53,6 @@ const Login = function Login() {
     <main>
       <div className="loginBlock">
         <h3 id="formtitle"><Badge bg="secondary">аутентификация</Badge></h3>
-        
         <Form>
             <FormGroup controlId="formBasicEmail">
               <Form.Label>Email Adress </Form.Label>

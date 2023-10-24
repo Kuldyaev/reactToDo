@@ -174,7 +174,7 @@ main {
 
 @media screen and (min-width: 1441px) {
   main {
-    min-height: 86vh;
+    min-height: 92vh;
     width: 100%;
     padding: 1vh 0;
   }
@@ -324,4 +324,9 @@ main {
   width: 100%;
   display: flex;
   justify-content: flex-end;
+}
+
+.letters{
+  margin: 0;
+  padding: 0;
 }
