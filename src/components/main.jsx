@@ -36,7 +36,7 @@ const Main = function Main() {
       priority: form.priority.value,
       status: form.status.value,
       executor: form.executor.value,
-      creator: 'current user',
+      creator: "current user",
       date_end: form.date_end.value,
     };
     console.log(formData);
@@ -105,12 +105,13 @@ const Main = function Main() {
                 className="horizontalBlockItem"
               >
                 <Form.Label>Приоритет</Form.Label>
-                <Form.Control
-                  type="text"
-                  placeholder="приоритет задачи"
-                  required
-                />
+                <Form.Select aria-label="Приоритет задачи">
+                  <option>Низкий</option>
+                  <option value="1">Высокий</option>
+                  <option value="2">Средний</option>
+                </Form.Select>
               </FormGroup>
+
               <FormGroup
                 as={Col}
                 md="5"
@@ -118,11 +119,12 @@ const Main = function Main() {
                 className="horizontalBlockItem"
               >
                 <Form.Label>Статус</Form.Label>
-                <Form.Control
-                  type="text"
-                  placeholder="статус задачи"
-                  required
-                />
+                 <Form.Select aria-label="Приоритет задачи">
+                  <option>к выполнению</option>
+                  <option value="1">выполняется</option>
+                  <option value="2">выполнена</option>
+                  <option value="3">отменена</option>
+                </Form.Select>
               </FormGroup>
               <FormGroup
                 as={Col}
@@ -132,7 +134,7 @@ const Main = function Main() {
               >
                 <Form.Label>Дата окончания</Form.Label>
                 <Form.Control
-                  type="text"
+                  type="date"
                   placeholder="дата завершения"
                   required
                 />
@@ -140,17 +142,17 @@ const Main = function Main() {
             </Row>
             <Row className="mb-2">
               <FormGroup md="5" as={Col}>
-              <Button
-                variant="secondary"
-                onClick={() => setNewTaskModalShowed(false)}
-              >
-                Отмена
-              </Button>
+                <Button
+                  variant="secondary"
+                  onClick={() => setNewTaskModalShowed(false)}
+                >
+                  Отмена
+                </Button>
               </FormGroup>
-              <FormGroup md="5" as={Col}> 
-              <Button variant="primary"  type="submit">
-                Создать задачу
-              </Button>
+              <FormGroup md="5" as={Col}>
+                <Button variant="primary" type="submit">
+                  Создать задачу
+                </Button>
               </FormGroup>
             </Row>
           </Form>
