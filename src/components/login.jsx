@@ -3,6 +3,8 @@ import { useSelector, useDispatch } from "react-redux";
 import { authorize } from "./../reducers/users";
 import { useNavigate } from 'react-router-dom';
 
+import { Button, FormGroup, Badge, Form} from "react-bootstrap";
+
 const Login = function Login() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
@@ -50,30 +52,22 @@ const Login = function Login() {
   return (
     <main>
       <div className="loginBlock">
-        <h3 id="formtitle">аутентификация</h3>
-        <form
-          onSubmit={handleSubmit}
-          className="loginForm"
-          encType="multipart/form-data"
-        >
-          <input
-            type="text"
-            name="username"
-            placeholder="Username"
-            list="owners"
-            className="loginFormItem"
-            onChange={handleUsernameChange}
-          />
-          <datalist id="owners">{optionList()}</datalist>
-          <input
-            type="text"
-            name="password"
-            placeholder="Password"
-            className="loginFormItem"
-            onChange={handlePassChange}
-          />
-          <input type="submit" className="loginFormItem" value="Войти" />
-        </form>
+        <h3 id="formtitle"><Badge bg="secondary">аутентификация</Badge></h3>
+        
+        <Form>
+            <FormGroup controlId="formBasicEmail">
+              <Form.Label>Email Adress </Form.Label>
+              <Form.Control type='email' placeholder='Enter email'  onChange={handleUsernameChange} />
+              <Form.Text className='text-muted'>We'll never share your email with anyone else</Form.Text>
+            </FormGroup>
+            <FormGroup controlId="formBasicPassword">
+              <Form.Label>Password </Form.Label>
+            <Form.Control type='Password' placeholder='Password' onChange={handlePassChange} />
+          </FormGroup>
+            <FormGroup controlId="formBasicPassword" className='btn-place'>
+              <Button onClick={handleSubmit} variant="dark">Перейти к задачам</Button>
+            </FormGroup>
+        </Form>
         {wrongPassword && <p className="warning">неверный пароль</p>}
         {wrongUsername && <p className="warning">пользователя с таким логином не существует</p>}
       </div>
