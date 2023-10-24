@@ -7,40 +7,123 @@ export const tasksReducer = createSlice({
           {
               id: 1,
               title: 'Приготовить рабочее место',
-              descr: 'Найти ручку, бумагу, ластик и циркуль',
-              createdAt: '20.10.2023',
-              renovatedAt: '20.10.2023',
-              comletedAd: null,
-              prioritet: 3,
-              status: 'выполняется',
-              actor: 2,
-              author: 1
-          },
-          {
+              description: 'Найти ручку, бумагу, ластик и циркуль',
+              priority_id: 1,
+              status_id: 1,
+              executor: {
+                  id: 3,
+                  name: 'Приготовить рабочее место',
+                  email: "mitchell.adelbert@example.net",
+                  email_verified_at: "2023-10-23T10:36:10.000000Z",
+                  is_admin: 0,
+                  created_at: "2023-10-23T10:36:10.000000Z",
+                  updated_at: "2023-10-23T10:36:10.000000Z"
+              },
+              creator: {
+                  id: 1,
+                  name: "Prof. Keira Connelly",
+                  email: "feil.nicholas@example.net",
+                  email_verified_at: "2023-10-23T10:36:10.000000Z",
+                  is_admin: 1,
+                  created_at: "2023-10-23T10:36:10.000000Z",
+                  updated_at: "2023-10-23T10:36:10.000000Z"
+              },
+              date_end: "2023-10-19",
+              created_at: null,
+              updated_at: null,
+              priority: {
+                  id: 1,
+                  name: "Высокий",
+                  created_at: null,
+                  updated_at: null
+              },
+              status: {
+                  id: 1,
+                  name: "к выполнению",
+                  created_at: null,
+                  updated_at: null
+              },
+          },    
+            {
               id: 2,
               title: 'Приступить к работе',
-              descr: 'Выпить кофе, сходить на перекур',
-              createdAt: '20.10.2023',
-              renovatedAt: '20.10.2023',
-              comletedAd: null,
-              prioritet: 2,
-              status: 'выполняется',
-              actor: 2,
-              author: 1
-          },
-          {
+              description: 'Выпить кофе, сходить на перекур',
+              priority_id: 1,
+              status_id: 1,
+              executor: {
+                  id: 3,
+                  name: 'Приготовить рабочее место',
+                  email: "mitchell.adelbert@example.net",
+                  email_verified_at: "2023-10-23T10:36:10.000000Z",
+                  is_admin: 0,
+                  created_at: "2023-10-23T10:36:10.000000Z",
+                  updated_at: "2023-10-23T10:36:10.000000Z"
+              },
+              creator: {
+                  id: 1,
+                  name: "Prof. Keira Connelly",
+                  email: "feil.nicholas@example.net",
+                  email_verified_at: "2023-10-23T10:36:10.000000Z",
+                  is_admin: 1,
+                  created_at: "2023-10-23T10:36:10.000000Z",
+                  updated_at: "2023-10-23T10:36:10.000000Z"
+              },
+              date_end: "2023-10-19",
+              created_at: null,
+              updated_at: null,
+              priority: {
+                  id: 1,
+                  name: "Высокий",
+                  created_at: null,
+                  updated_at: null
+              },
+              status: {
+                  id: 1,
+                  name: "к выполнению",
+                  created_at: null,
+                  updated_at: null
+              },
+          },  
+            {
               id: 3,
               title: 'Заказать лимузин',
-              descr: 'Не забыть, что лучшие друзья ждут этого события!',
-              createdAt: '21.10.2023',
-              renovatedAt: '21.10.2023',
-              comletedAd: null,
-              prioritet: 1,
-              status: 'выполняется',
-              actor: 2,
-              author: 1
-          },
-          
+              description: 'Не забыть, что лучшие друзья ждут этого события!',
+              priority_id: 1,
+              status_id: 1,
+              executor: {
+                  id: 3,
+                  name: 'Приготовить рабочее место',
+                  email: "mitchell.adelbert@example.net",
+                  email_verified_at: "2023-10-23T10:36:10.000000Z",
+                  is_admin: 0,
+                  created_at: "2023-10-23T10:36:10.000000Z",
+                  updated_at: "2023-10-23T10:36:10.000000Z"
+              },
+              creator: {
+                  id: 1,
+                  name: "Prof. Keira Connelly",
+                  email: "feil.nicholas@example.net",
+                  email_verified_at: "2023-10-23T10:36:10.000000Z",
+                  is_admin: 1,
+                  created_at: "2023-10-23T10:36:10.000000Z",
+                  updated_at: "2023-10-23T10:36:10.000000Z"
+              },
+              date_end: "2023-10-19",
+              created_at: null,
+              updated_at: null,
+              priority: {
+                  id: 1,
+                  name: "Высокий",
+                  created_at: null,
+                  updated_at: null
+              },
+              status: {
+                  id: 1,
+                  name: "к выполнению",
+                  created_at: null,
+                  updated_at: null
+              },
+          },         
       ]
   },
   reducers: {
@@ -48,7 +131,6 @@ export const tasksReducer = createSlice({
   },
 });
 
-// Action creators are generated for each case reducer function
 export const {
     
 } = tasksReducer.actions;

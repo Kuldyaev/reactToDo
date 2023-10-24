@@ -343,3 +343,9 @@ main {
 .horizontalBlockItem{
   margin-right: 8px;
 }
+.mybadge{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px 0 0 0;
+}

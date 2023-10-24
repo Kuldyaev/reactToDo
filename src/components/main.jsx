@@ -15,6 +15,7 @@ import {
   ModalHeader,
   ModalTitle,
   Col,
+  Table,
 } from "react-bootstrap";
 
 const Main = function Main() {
@@ -45,11 +46,9 @@ const Main = function Main() {
   return (
     <main>
       <div className="tasksDeskHeader">
-        <h2 id="formtitle">
-          <Badge text="dark">
-            {"сегодня " + moment().format("DD-MM-YYYY")}
-          </Badge>
-        </h2>
+        <span class="badge bg-primary mybadge">
+           сегодня <br /> {moment().format("DD-MM-YYYY")}
+        </span>
         <h2 id="formtitle">
           <Badge bg="secondary">Список задач:</Badge>
         </h2>
@@ -59,9 +58,31 @@ const Main = function Main() {
       </div>
       <div className="taskDesk">
         {!Boolean(tasks.length) && <p>В настоящее время у вас нет задач</p>}
-        {Boolean(tasks.length) && <TaskTableHeader />}
-        {Boolean(tasks.length) &&
-          tasks.map((task) => <Task task={task} key={task.id} />)}
+        <Table striped bordered hover>
+          {Boolean(tasks.length) && (
+            <thead>
+              <tr>
+                <th>Задача</th>
+                <th>Приоритет</th>
+                <th>Дата окончания</th>
+                <th>Ответственный</th>
+                <th>Статус</th>
+              </tr>
+            </thead>
+          )}
+          <tbody>
+            {Boolean(tasks.length) &&
+              tasks.map((task) => (
+                <tr>
+                  <td>{task.title}</td>
+                  <td>{task.priority.name}</td>
+                  <td>{task.date_end}</td>
+                  <td>{task.executor.name}</td>
+                  <td>{task.status.name}</td>
+                </tr>
+              ))}
+          </tbody>
+        </Table>
       </div>
       <Modal
         show={newTaskModalShowed}
@@ -119,7 +140,7 @@ const Main = function Main() {
                 className="horizontalBlockItem"
               >
                 <Form.Label>Статус</Form.Label>
-                 <Form.Select aria-label="Приоритет задачи">
+                <Form.Select aria-label="Приоритет задачи">
                   <option>к выполнению</option>
                   <option value="1">выполняется</option>
                   <option value="2">выполнена</option>
