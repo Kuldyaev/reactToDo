@@ -1,8 +1,4 @@
 import { useEffect, useState } from "react";
-import { useSelector } from "react-redux";
-import { useNavigate } from "react-router-dom";
-import moment from "moment/moment";
-import Row from "react-bootstrap/Row";
 import {
   Form,
   Modal,
@@ -13,26 +9,12 @@ import {
   ModalHeader,
   ModalTitle,
   Col,
-  Table,
+  Row
 } from "react-bootstrap";
 
-import EditTaskModal from './editTaskModal'
+const EditTaskModal = function EditTaskModal({ editTaskModalShowed, setEditTaskModalShowed, task } ) {
 
-const Main = function Main() {
-  const [newTaskModalShowed, setNewTaskModalShowed] = useState(false);
-
-  const isAuthorized = useSelector((state) => state.users.isAuthorized);
-  const navigate = useNavigate();
-  const tasks = useSelector((state) => state.tasks.tasks);
-  
-  const [currentTask, setCurrentTask] = useState(null);
-  const [editTaskModalShowed, setEditTaskModalShowed] = useState(false);
-
-  useEffect(() => {
-    !isAuthorized && navigate("/login");
-  }, []);
-
-  const handleSubmitForm = (event) => {
+    const handleSubmitForm = (event) => {
     event.preventDefault();
     const form = event.currentTarget;
     const formData = {
@@ -47,60 +29,13 @@ const Main = function Main() {
     console.log(formData);
   };
 
-  const handleEditTask = (event) => {
-    event.preventDefault();
-    const task = event.currentTarget;
-    setCurrentTask(tasks.filter((task) => task.id === Number(event.currentTarget.dataset.taskid))[0]);
-    setEditTaskModalShowed(true);
-    console.log(Number(event.currentTarget.dataset.taskid));
-  };
+  useEffect(()=>console.log(task),[task])
 
-  useEffect(() => console.log(currentTask), [currentTask]);
 
-  return (
-    <main>
-      <div className="tasksDeskHeader">
-        <span class="badge bg-primary mybadge">
-           сегодня <br /> {moment().format("DD-MM-YYYY")}
-        </span>
-        <h2 id="formtitle">
-          <Badge bg="secondary">Список задач:</Badge>
-        </h2>
-        <Button onClick={() => setNewTaskModalShowed(true)} variant="dark">
-          + cоздать новую задачу
-        </Button>
-      </div>
-      <div className="taskDesk">
-        {!Boolean(tasks.length) && <p>В настоящее время у вас нет задач</p>}
-        <Table striped bordered hover>
-          {Boolean(tasks.length) && (
-            <thead>
-              <tr>
-                <th>Задача</th>
-                <th>Приоритет</th>
-                <th>Дата окончания</th>
-                <th>Ответственный</th>
-                <th>Статус</th>
-              </tr>
-            </thead>
-          )}
-          <tbody>
-            {Boolean(tasks.length) &&
-              tasks.map((task) => (
-                <tr key={task.id} onClick={handleEditTask} data-taskID={task.id}>
-                  <td class='notake'>{task.title}</td>
-                  <td class='notake'>{task.priority.name}</td>
-                  <td class='notake'>{task.date_end}</td>
-                  <td class='notake'>{task.executor.name}</td>
-                  <td class='notake'>{task.status.name}</td>
-                </tr>
-              ))}
-          </tbody>
-        </Table>
-      </div>
-      <Modal
-        show={newTaskModalShowed}
-        onHide={() => setNewTaskModalShowed(false)}
+    return (
+    <Modal
+        show={editTaskModalShowed}
+        onHide={() => setEditTaskModalShowed(false)}
         centered
       >
         <ModalHeader closeButton>
@@ -179,7 +114,7 @@ const Main = function Main() {
               <FormGroup md="5" as={Col}>
                 <Button
                   variant="secondary"
-                  onClick={() => setNewTaskModalShowed(false)}
+                  onClick={() => setEditTaskModalShowed(false)}
                 >
                   Отмена
                 </Button>
@@ -193,9 +128,7 @@ const Main = function Main() {
           </Form>
         </ModalBody>
       </Modal>
-
-      <EditTaskModal editTaskModalShowed={editTaskModalShowed} setEditTaskModalShowed={setEditTaskModalShowed} task={currentTask} />
-    </main>
   );
 };
-export default Main;
+
+export default EditTaskModal;
